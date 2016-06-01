@@ -58,7 +58,7 @@ func _process(delta):
 	# we need to pass the frame delta to the moving functions, so we do it here with a command to move.
 	# we also calculate a speed bonus based on the zoom level. This makes the dolly move faster when zoomed
 	# further out, as one would most likely expect.
-	var speed_bonus= clamp((boom.zoom.size()-boom.current_zoom_level)*.5, 1, 5)
+	var speed_bonus= clamp((boom.current_zoom_level)*.5, 1, 5)
 	dolly.move(delta, speed_bonus)
 	boom.move(delta)
 		

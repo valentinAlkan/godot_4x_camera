@@ -9,7 +9,7 @@ export var MIN_PITCH = -25
 export var MAX_PITCH = 25
 export var steps = 5
 export var acceleration = 10
-export var zoom = [100, 80, 60, 40, 0]
+export var zoom = [100, 60, 40, 20, 0]
 export var DEFAULT_ZOOM_LEVEL = 3
 # /exports
 
@@ -32,15 +32,15 @@ func _ready():
 		
 func retract():
 	# switch to a closer zoom level
-	current_zoom_level = clamp(current_zoom_level + 1, 0, zoom.size()-1)
+	current_zoom_level = clamp(current_zoom_level - 1, 0, zoom.size()-1)
 func extend():
 	# switch to a further zoom level
-	current_zoom_level = clamp(current_zoom_level - 1, 0, zoom.size()-1)
+	current_zoom_level = clamp(current_zoom_level + 1, 0, zoom.size()-1)
 func move(dt):
 	var theta = zoom[current_zoom_level]
-	var target_distance = theta * (MAX_LENGTH - MIN_LENGTH) / 100
+	var target_distance = MAX_LENGTH - theta * (MAX_LENGTH - MIN_LENGTH) / 100
 	distance_from_target = target_distance - camera.distance_from_origin
-	
+	print (theta, '    ', target_distance)
 	# don't try to move the camera if it's within a certain distance of it's target. Prevents jitter and slowness.
 	if abs(distance_from_target) > filter:
 		camera.move(Approach(0,distance_from_target/acceleration, dt))
