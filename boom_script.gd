@@ -40,7 +40,6 @@ func move(dt):
 	var theta = zoom[current_zoom_level]
 	var target_distance = MAX_LENGTH - theta * (MAX_LENGTH - MIN_LENGTH) / 100
 	distance_from_target = target_distance - camera.distance_from_origin
-	print (theta, '    ', target_distance)
 	# don't try to move the camera if it's within a certain distance of it's target. Prevents jitter and slowness.
 	if abs(distance_from_target) > filter:
 		camera.move(Approach(0,distance_from_target/acceleration, dt))
