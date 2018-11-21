@@ -3,9 +3,9 @@ A simple 4X style camera controller for the Godot game engine.
 
 ```
 You must define these actions in your Input Map. If yout don't, nothing will happen. 
-You don't have to call them what is listed here, but if you don't then you have to change the definitions below
-to match what you label them in the input Map. Probably best to just use these names, unless you
-really want them to be called something different.
+You don't have to call them what is listed here, but if you don't then you have to change the 
+definitions below to match what you label them in the input Map. Probably best to just use 
+these names, unless you really want them to be called something different.
 
 export var ACTION_NAME_CAMERA_MOVE_LEFT = "CameraMoveLeft"
 export var ACTION_NAME_CAMERA_MOVE_RIGHT = "CameraMoveRight"
