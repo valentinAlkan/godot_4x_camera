@@ -3,10 +3,10 @@ extends Spatial
 # Pitching the boom moves the camera while keeping the focal point of the screen the same.
 
 # exports
-export var MIN_LENGTH = 5
-export var MAX_LENGTH = 100
-export var MIN_PITCH = -25
-export var MAX_PITCH = 25
+export var MIN_LENGTH = 5.0
+export var MAX_LENGTH = 100.0
+export var MIN_PITCH = -25.0
+export var MAX_PITCH = 25.0
 export var steps = 5
 export var acceleration = 10
 export var zoom = [100, 60, 40, 20, 0]
@@ -43,16 +43,17 @@ func move(dt):
 	# don't try to move the camera if it's within a certain distance of it's target. Prevents jitter and slowness.
 	if abs(distance_from_target) > filter:
 		camera.move(Approach(0,distance_from_target/acceleration, dt))
+
 func pitch(target, dt):
 	# pitch the boom, according to the mouse input
 	var rotation = Vector3(1,0,0) * dt * target * .2
 
 	# before actually adjusting the boom, ensure that pitching the boom doesn't put us out of bounds
 	# if it does, pre-emtpively cancel the rotation before it happens (so as to eliminate stutter)
-	if get_rotation().x - rotation.x < MIN_PITCH and rotation.x > 0:
-		rotation.x = 0
-	if get_rotation().x - rotation.x > MAX_PITCH and rotation.x < 0:
-		rotation.x = 0
+	# if get_rotation().x - rotation.x < MIN_PITCH and rotation.x > 0:
+	# 	rotation.x = 0
+	# if get_rotation().x - rotation.x > MAX_PITCH and rotation.x < 0:
+	# 	rotation.x = 0
 	rotate_x(rotation.x)
 
 func reset():
